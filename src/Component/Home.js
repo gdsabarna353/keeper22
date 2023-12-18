@@ -56,7 +56,7 @@ function Home() {
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": "true",
-          Access-Control-Allow-Origin: "https://keeper22-frontend.vercel.app",
+          "Access-Control-Allow-Origin": "https://keeper22-frontend.vercel.app",
           // "Authorization": localStorage.getItem("userEmail")
         },
       })
