@@ -2,7 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const fs = require("fs");
 var path = require("path");
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
+const session = require('express-session');
 var passport = require("passport");
 const cors = require("cors");
 const cloudinary = require("cloudinary").v2; 
@@ -27,10 +28,14 @@ app.use(bodyParser.json());
 app.use(express.static('build'));
 
 app.use(
-  cookieSession({
-    name: "session",
-    keys: ["openreplay"],
-    maxAge: 24 * 60 * 60 * 100,
+  session({
+    secret: process.env.GOOGLE_CLIENT_SECRET || "this is a little secret",
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+        secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
+    }
   })
 );
 
