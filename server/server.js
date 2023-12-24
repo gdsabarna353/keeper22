@@ -768,6 +768,12 @@ app.get("/auth/login/success", async (req, res) => {
       }
     );
   }
+  else{
+    console.log("server-json-user-> ", req.user);
+    res.json({
+      user: null,
+    });
+  }
 });
 
 app.get("/auth/logout", (req, res) => {
